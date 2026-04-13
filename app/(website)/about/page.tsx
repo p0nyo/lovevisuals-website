@@ -4,7 +4,7 @@ import CardImage from "@/components/home/CardImage"
 
 export default function About() {
     return (
-            <div className="relative min-h-screen w-full flex flex-col items-center justify-center gap-8 bg-gray-500">
+            <div className="bg-[linear-gradient(to_bottom,#678BAA,#EBE8D8)] relative min-h-screen w-full flex flex-col items-center justify-center gap-8 bg-gray-500">
                 <div className="flex flex-row w-full items-center justify-start gap-4 px-60">
                     <div className="w-full">
                         <CardImage src="/img.jpg" alt="" width={500} height={430} />

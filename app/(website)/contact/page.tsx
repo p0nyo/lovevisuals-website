@@ -3,7 +3,7 @@
 
 export default function Contact() {
     return (
-            <div className="relative min-h-screen w-full py-20 px-40 bg-gray-500 flex flex-col gap-10">
+            <div className="bg-[linear-gradient(to_bottom,#678BAA,#EBE8D8)] relative min-h-screen w-full py-20 px-40 bg-gray-500 flex flex-col gap-10">
                 <div className="flex items-center justify-center h-full text-9xl ">
                     Get In Touch
                 </div>
