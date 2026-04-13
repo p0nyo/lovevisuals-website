@@ -24,7 +24,7 @@ export default function Landing() {
                     />
                 </div>
             </div>
-            <div className="bg-gray-500 flex flex-col items-center justify-center min-h-screen">
+            <div className="bg-[linear-gradient(to_bottom,#678BAA,#EBE8D8)] flex flex-col items-center justify-center min-h-screen">
                 <div className="flex items-center gap-4">
                     <CardImage src="/img.jpg" alt="" width={300} height={550} />
                     <CardImage src="/img.jpg" alt="" width={300} height={700} />
@@ -44,7 +44,7 @@ export default function Landing() {
                 </div>
             </div>
 
-            <div className="bg-gray-300 min-h-screen flex flex-col items-center justify-center p-4">
+            <div className="bg-[#EBE8D8] min-h-screen flex flex-col items-center justify-center p-4">
                 <div className="grid grid-cols-3 gap-8">
                     <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
                     <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
@@ -63,7 +63,7 @@ export default function Landing() {
                 </Link>
             </div>
 
-            <div className="bg-gray-500 h-[50vh] flex flex-col items-end justify-end px-8 py-4">
+            <div className="bg-[linear-gradient(to_bottom,#EBE8D8,#678BAA)] h-[50vh] flex flex-col items-end justify-end px-8 py-4">
                 <div className="flex flex-col items-end">
                     <p className="text-9xl font-bold tracking-wider">"Do everything in love."</p>
                     <p className="text-4xl font-bold tracking-wider italic">(1 Corinthians 16:14)</p>
