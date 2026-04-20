@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Image from "next/image";
+import { FaInstagram, FaEnvelope } from "react-icons/fa";
+import { FaE } from "react-icons/fa6";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -47,8 +49,18 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className="flex flex-row space-x-4">
-                    <div>instagram</div>
-                    <div>email</div>
+                    <a
+                    href="https://instagram.com/_lovevisuals_"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >
+                        <FaInstagram className="w-10 h-10" />
+                    </a>
+                    <a
+                    href="mailto:your email@example.com"
+                    >
+                        <FaEnvelope className="w-10 h-10" />
+                    </a>
                 </div>
             </div>
         </nav>
