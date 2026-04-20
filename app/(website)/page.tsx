@@ -34,7 +34,7 @@ export default function Landing() {
                     <CardImage src="/img.jpg" alt="" className="w-40 h-60 md:w-75 md:h-138" />
                 </div>
                 <div className="flex flex-col items-center">
-                    <h1 className="text-4xl font-bold text-center mt-8 tracking-wider">
+                    <h1 className="text-[#678BAA] text-4xl font-bold text-center mt-8 tracking-wider">
                         Every moment has a story. Let's capture yours in a way you'll cherish forever.
                     </h1>
                     <Link href="/contact">
