@@ -24,13 +24,14 @@ export default function Landing() {
                     />
                 </div>
             </div>
+            
             <div className="bg-[linear-gradient(to_bottom,#678BAA,#EBE8D8)] flex flex-col items-center justify-center min-h-screen">
                 <div className="flex items-center gap-4">
-                    <CardImage src="/img.jpg" alt="" width={300} height={550} />
-                    <CardImage src="/img.jpg" alt="" width={300} height={700} />
-                    <CardImage src="/img.jpg" alt="" width={300} height={550} />
-                    <CardImage src="/img.jpg" alt="" width={300} height={700} />
-                    <CardImage src="/img.jpg" alt="" width={300} height={550} />
+                    <CardImage src="/img.jpg" alt="" className="w-50 h-60 md:w-75 md:h-138" />
+                    <CardImage src="/img.jpg" alt="" className="w-40 h-60 md:w-75 md:h-174" />
+                    <CardImage src="/img.jpg" alt="" className="w-40 h-60 md:w-75 md:h-138" />
+                    <CardImage src="/img.jpg" alt="" className="w-40 h-60 md:w-75 md:h-174" />
+                    <CardImage src="/img.jpg" alt="" className="w-40 h-60 md:w-75 md:h-138" />
                 </div>
                 <div className="flex flex-col items-center">
                     <h1 className="text-4xl font-bold text-center mt-8 tracking-wider">
@@ -46,15 +47,15 @@ export default function Landing() {
 
             <div className="bg-[#EBE8D8] min-h-screen flex flex-col items-center justify-center p-4">
                 <div className="grid grid-cols-3 gap-8">
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
-                    <CardImage src="/img.jpg" alt="Image 1" width={500} height={350} />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
+                    <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
                 </div>
                 <Link href="/portfolio">
                     <button className="mt-6 px-6 py-3 bg-white text-black rounded-sm text-lg" >

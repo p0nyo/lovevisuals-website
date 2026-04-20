@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Image from "next/image";
 import { FaInstagram, FaEnvelope } from "react-icons/fa";
-import { FaE } from "react-icons/fa6";
 
 const navLinks = [
     { name: "Home", href: "/" },

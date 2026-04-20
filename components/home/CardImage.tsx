@@ -3,22 +3,17 @@ import Image from "next/image";
 interface CardImageProps {
     src: string;
     alt: string;
-    width: number;
-    height: number;
+    className?: string;
 }
 
-export default function CardImage({ src, alt, width, height }: CardImageProps) {
+export default function CardImage({ src, alt, className }: CardImageProps) {
     return (
-        <div
-            style={{ width: `${width}px`, height: `${height}px`, overflow: "hidden" }}
-            className="rounded-lg"
-        >
+        <div className={`relative overflow-hidden rounded-lg ${className}`}>
             <Image
-            src={src}
-            width={width}
-            height={height}
-            className="object-cover w-full h-full"
-            alt={alt}
+                src={src}
+                fill
+                className="object-cover"
+                alt={alt}
             />
         </div>
     );
