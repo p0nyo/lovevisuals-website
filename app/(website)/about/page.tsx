@@ -1,4 +1,4 @@
-import CardImage from "@/components/home/CardImage"
+import CardImage from "@/components/ui/CardImage"
 
 
 export default function About() {

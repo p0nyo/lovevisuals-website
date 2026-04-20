@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CardImage from "@/components/home/CardImage";
+import CardImage from "@/components/ui/CardImage";
 import Link from "next/link";
 
 
