@@ -1,6 +1,7 @@
 import Image from "next/image";
 import CardImage from "@/components/ui/CardImage";
 import Link from "next/link";
+import GlobalButton from "@/components/ui/GlobalButton";
 
 
 // super quick prototyping, will separate into components and add proper structure later lol
@@ -38,9 +39,9 @@ export default function Landing() {
                         Every moment has a story. Let's capture yours in a way you'll cherish forever.
                     </h1>
                     <Link href="/contact">
-                        <button className="mt-6 px-6 py-3 bg-white text-black rounded-sm text-lg">
+                        <GlobalButton variant="primary" size="md" className="mt-6 hover:opacity-60 transition-opacity duration-300">
                             start your chapter...
-                        </button>
+                        </GlobalButton>
                     </Link>
                 </div>
             </div>
@@ -58,9 +59,9 @@ export default function Landing() {
                     <CardImage src="/img.jpg" alt="Image 1" className="w-40 h-60 md:w-126 md:h-88" />
                 </div>
                 <Link href="/portfolio">
-                    <button className="mt-6 px-6 py-3 bg-white text-black rounded-sm text-lg" >
-                        view my gallery
-                    </button>
+                    <GlobalButton variant="primary" size="md" className="mt-6 hover:opacity-60 transition-opacity duration-300">
+                        view my gallery &lt;3
+                    </GlobalButton>
                 </Link>
             </div>
 

@@ -1,4 +1,4 @@
-
+import GlobalButton from "@/components/ui/GlobalButton";
 
 
 export default function Contact() {
@@ -52,12 +52,9 @@ export default function Contact() {
                         </div>
 
                         {/* Submit */}
-                        <button
-                            type="submit"
-                            className="w-full py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition"
-                        >
+                        <GlobalButton variant="primary" size="md" className="mt-6 hover:opacity-60 transition-opacity duration-300">
                             Send Message
-                        </button>
+                        </GlobalButton>
                     </form>
                 </div>
             </div>
