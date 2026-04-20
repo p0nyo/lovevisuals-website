@@ -52,7 +52,7 @@ export default function Contact() {
                         </div>
 
                         {/* Submit */}
-                        <GlobalButton variant="primary" size="md" className="mt-6 hover:opacity-60 transition-opacity duration-300">
+                        <GlobalButton type="submit" variant="primary" size="md" className="mt-6 hover:opacity-60 transition-opacity duration-300">
                             Send Message
                         </GlobalButton>
                     </form>
