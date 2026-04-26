@@ -7,17 +7,17 @@ import Image from "next/image";
 import { FaInstagram, FaEnvelope } from "react-icons/fa";
 
 const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Portfolio", href: "/portfolio" },
-    { name: "Contact", href: "/contact" },
+    { name: "home", href: "/" },
+    { name: "about", href: "/about" },
+    { name: "portfolio", href: "/portfolio" },
+    { name: "contact", href: "/contact" },
 ];
 
 export default function Navbar() {
     const pathname = usePathname();
 
     return (
-        <nav className="fixed top-0 left-0 w-full px-14 py-6 z-50">
+        <nav className="absolute top-0 left-0 w-full px-14 py-6 z-50">
             <div className="flex items-center justify-between">
                 <div className="flex space-x-8">
                     <Image
@@ -35,9 +35,9 @@ export default function Navbar() {
                                     key={link.href}
                                     href={link.href}
                                     className={clsx(
-                                        "text-xl font-bold italic transition-colors",
+                                        "text-2xl font-extrabold italic transition-colors",
                                         isActive
-                                            ? "text-white font-semibold"
+                                            ? "text-white font-black"
                                             : "text-white/70 hover:text-white",
                                     )}
                                 >
