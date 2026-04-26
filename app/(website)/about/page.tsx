@@ -4,7 +4,7 @@ import CardImage from "@/components/ui/CardImage"
 export default function About() {
     return (
             <div className="bg-white relative min-h-screen w-full flex">
-                <div className="z-0 absolute inset-0 bg-[radial-gradient(rgba(103,139,170,0.7)_0%,rgba(103,139,170,1))]" />
+                <div className="z-0 absolute inset-0 bg-[radial-gradient(rgba(103,139,170,0.8)_0%,rgba(103,139,170,1))]" />
 
                 <div className="z-10 flex flex-col items-center justify-center gap-8 px-100">
                     <div className="flex flex-row w-full items-center justify-center">

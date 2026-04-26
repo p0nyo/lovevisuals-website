@@ -17,12 +17,12 @@ export default function GlobalButton({
             "cursor-pointer inline-flex items-center justify-center rounded-sm transition disabled:opacity-50",
             {
             "bg-[#678BAA] text-[#EBE8D8]": variant === "primary",
-            "bg-[#EBE8D8] text-[#678BAA]": variant === "secondary",
+            "bg-white text-[#678BAA]": variant === "secondary",
             "bg-transparent hover:bg-gray-100": variant === "ghost",
             },
             {
             "px-4 py-2 text-sm": size === "sm",
-            "px-6 py-3 text-lg font-black": size === "md",
+            "px-6 py-3 text-xl font-black": size === "md",
             "px-8 py-4 text-xl": size === "lg",
             },
             className
