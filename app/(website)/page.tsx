@@ -8,7 +8,7 @@ import GlobalButton from "@/components/ui/GlobalButton";
 export default function Landing() {
     return (
         <>
-            <div className="relative h-screen w-full">
+            <div className="z-0 relative h-screen w-full">
                 <Image
                     src="/love-visuals-landing-image-1.webp"
                     alt="Background"
@@ -16,6 +16,7 @@ export default function Landing() {
                     style={{ objectFit: "cover" }}
                     priority
                 />
+                <div className="absolute inset-0 h-[50vh] bg-[linear-gradient(to_bottom,#678BAA,rgba(103,139,170,0))]" />
                 <div className="absolute top-20 left-1/2 -translate-x-1/2 z-10">
                     <Image
                         src="/love-visuals-landing-title.svg"
@@ -26,7 +27,7 @@ export default function Landing() {
                 </div>
             </div>
             
-            <div className="bg-[linear-gradient(to_bottom,#678BAA,#EBE8D8)] flex flex-col items-center justify-center min-h-screen">
+            <div className="z-10 bg-[linear-gradient(to_bottom,#678BAA,#EBE8D8)] flex flex-col items-center justify-center min-h-screen">
                 <div className="flex items-center gap-4">
                     <CardImage src="/img.jpg" alt="" className="w-50 h-60 md:w-75 md:h-138" />
                     <CardImage src="/img.jpg" alt="" className="w-40 h-60 md:w-75 md:h-174" />
