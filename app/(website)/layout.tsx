@@ -8,6 +8,7 @@ import { ReactLenis } from 'lenis/react';
 const alegreya = Alegreya({
     variable: "--font-alegreya",
     subsets: ["latin"],
+    style: ["normal", "italic"],
     display: "swap",
 });
 
@@ -24,9 +25,9 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${alegreya.variable} h-full antialiased`}>
             <ReactLenis root />
-            <body className="min-h-full flex flex-col">
+            <body className="min-h-full flex flex-col font-alegreya">
                 <Navbar />
-                {children}
+                {children}  
                 <Footer />
             </body>
         </html>
