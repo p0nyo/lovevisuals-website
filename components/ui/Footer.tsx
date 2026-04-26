@@ -1,8 +1,8 @@
 export default function Footer() {
     return (
-        <footer className="bg-gray-800 text-white py-6">
-            <div className="container mx-auto text-center text-xl">
-                <p>&copy; {new Date().getFullYear()} Love Visuals Photography. All rights reserved.</p>
+        <footer className="bg-[#EBE8D8] text-[#678BAA] py-2">
+            <div className="flex items-center justify-end text-xl font-bold px-4">
+                <p>&copy; {new Date().getFullYear()} love visuals. all rights reserved.</p>
             </div>
         </footer>
     );
