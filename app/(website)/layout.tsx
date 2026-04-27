@@ -3,7 +3,7 @@ import { Alegreya } from "next/font/google";
 import "@/app/globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { ReactLenis } from 'lenis/react';
+import { LenisProvider } from "@/components/LenisProvider";
 
 const alegreya = Alegreya({
     variable: "--font-alegreya",
@@ -14,7 +14,7 @@ const alegreya = Alegreya({
 
 export const metadata: Metadata = {
     title: "Love Visuals Photography",
-    description: "Do it with love.",
+    description: "Captured with love, of love, by love.",
 };
 
 export default function RootLayout({
@@ -24,11 +24,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${alegreya.variable} h-full antialiased`}>
-            <ReactLenis root />
             <body className="min-h-full flex flex-col font-alegreya">
-                <Navbar />
-                {children}  
-                <Footer />
+                <LenisProvider>
+                    <Navbar />
+                        {children}
+                    <Footer />
+                </LenisProvider>
             </body>
         </html>
     );
