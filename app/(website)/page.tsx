@@ -67,7 +67,7 @@ export default function Landing() {
                         key={index}
                         src="/img.jpg"
                         alt={`Image ${index + 1}`}
-                        className="w-40 h-60 md:w-120 md:h-80"
+                        className="w-40 h-60 md:w-100 md:h-60"
                         />
                     ))}
                 </div>
@@ -102,7 +102,7 @@ export default function Landing() {
 
             {/* quote section */}
 
-            <div className="bg-[#EBE8D8] h-[50vh] flex flex-col items-end justify-end px-8 py-4">
+            <div className="bg-[#EBE8D8] h-[30vh] flex flex-col items-end justify-end px-8 py-4">
                 <div className="flex flex-col items-end text-[#678BAA] italic">
                     <p className="text-9xl font-bold tracking-wide">"Do everything in love."</p>
                     <p className="text-4xl font-bold tracking-wide italic">(1 Corinthians 16:14)</p>
