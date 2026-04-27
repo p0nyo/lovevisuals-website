@@ -3,7 +3,7 @@ import { Alegreya } from "next/font/google";
 import "@/app/globals.css";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import { ReactLenis } from 'lenis/react';
+import { LenisProvider } from "@/components/LenisProvider";
 
 const alegreya = Alegreya({
     variable: "--font-alegreya",
@@ -25,11 +25,11 @@ export default function RootLayout({
     return (
         <html lang="en" className={`${alegreya.variable} h-full antialiased`}>
             <body className="min-h-full flex flex-col font-alegreya">
-                <ReactLenis root>
+                <LenisProvider>
                     <Navbar />
-                    {children}
+                        {children}
                     <Footer />
-                </ReactLenis>
+                </LenisProvider>
             </body>
         </html>
     );
