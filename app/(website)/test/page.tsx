@@ -124,9 +124,9 @@ export default function TestPage() {
     const bgBRadial = useTransform(scrollYProgress, [0, 0.45, 0.55, 0.90, 1, 1], [0, 0, 1, 1, 0, 0]);
     const bgC = useTransform(scrollYProgress, [0, 0.90, 1, 1], [0, 0, 1, 1]);
 
-    // Content slices — fade in from +40px below center, lock at center, fade out at -40px above center
-    const contentA = useTransform(scrollYProgress, [0, 0.40, 0.45, 0.50, 1], [0, 1, 1, 0, 0]);
-    const contentAY = useTransform(scrollYProgress, [0, 0.40, 0.45, 0.50, 1], ["40px", "0px", "0px", "-40px", "-40px"]);
+    // Content slices — A visible from start, slides up + fades out at handoff. B/C fade in at handoffs.
+    const contentA = useTransform(scrollYProgress, [0, 0.45, 0.50, 1], [1, 1, 0, 0]);
+    const contentAY = useTransform(scrollYProgress, [0, 0.45, 0.50, 1], ["0px", "0px", "-40px", "-40px"]);
 
     const contentB = useTransform(scrollYProgress, [0, 0.50, 0.55, 0.95, 1, 1], [0, 0, 1, 1, 0, 0]);
     const contentBY = useTransform(scrollYProgress, [0, 0.50, 0.55, 0.95, 1, 1], ["40px", "40px", "0px", "0px", "-40px", "-40px"]);
