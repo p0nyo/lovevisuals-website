@@ -87,69 +87,52 @@ function phraseOpacity(
     );
 }
 
-function contentOpacity(
-    progress: MotionValue<number>,
-    inStart: number,
-    inEnd: number,
-    holdEnd: number,
-    outEnd: number
-): MotionValue<number> {
-    return useTransform(progress, [0, inStart, inEnd, holdEnd, outEnd, 1], [0, 0, 1, 1, 0, 0]);
-}
-
-function contentTranslateY(
-    progress: MotionValue<number>,
-    outEnd: number
-): MotionValue<string> {
-    return useTransform(progress, [0, outEnd, 1], ["0px", "0px", "-40px"]);
-}
-
 export default function TestPage() {
     const pageRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ target: pageRef, offset: ["start start", "end end"] });
 
-    // Tail phrase slices (strict handoff, ~0.10 fade per transition)
-    const tailA = useTransform(scrollYProgress, [0, 0.30, 0.40, 1], [1, 1, 0, 0]);
-    const tailAY = useTransform(scrollYProgress, [0, 0.30, 0.40, 1], ["0px", "0px", "-20px", "-20px"]);
+    // Tail phrase slices (strict handoff, ~10% fade per transition, ~35% hold per section)
+    const tailA = useTransform(scrollYProgress, [0, 0.40, 0.50, 1], [1, 1, 0, 0]);
+    const tailAY = useTransform(scrollYProgress, [0, 0.40, 0.50, 1], ["0px", "0px", "-20px", "-20px"]);
     const tailAVis = useTransform(tailA, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    const tailB = phraseOpacity(scrollYProgress, 0.40, 0.50, 0.70, 0.80);
-    const tailBY = useTransform(scrollYProgress, [0, 0.40, 0.50, 0.70, 0.80, 1], ["20px", "20px", "0px", "0px", "-20px", "-20px"]);
+    const tailB = useTransform(scrollYProgress, [0, 0.50, 0.60, 0.90, 1, 1], [0, 0, 1, 1, 0, 0]);
+    const tailBY = useTransform(scrollYProgress, [0, 0.50, 0.60, 0.90, 1, 1], ["20px", "20px", "0px", "0px", "-20px", "-20px"]);
     const tailBVis = useTransform(tailB, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    const tailC = useTransform(scrollYProgress, [0, 0.80, 0.90, 1], [0, 0, 1, 1]);
-    const tailCY = useTransform(scrollYProgress, [0, 0.80, 0.90, 1], ["20px", "0px", "0px", "0px"]);
+    const tailC = useTransform(scrollYProgress, [0, 0.90, 1, 1], [0, 0, 1, 1]);
+    const tailCY = useTransform(scrollYProgress, [0, 0.90, 1, 1], ["20px", "0px", "0px", "0px"]);
     const tailCVis = useTransform(tailC, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    // Captured color layers (blue ↔ white, synced with Section B bg window)
+    // Captured color layers (blue ↔ white, synced with Section B bg window 0.60→0.90)
     const capturedBlue = useTransform(
         scrollYProgress,
-        [0, 0.30, 0.40, 0.65, 0.75, 1],
+        [0, 0.40, 0.50, 0.90, 1, 1],
         [1, 1, 0, 0, 1, 1]
     );
     const capturedBlueVis = useTransform(capturedBlue, (v) => (v > 0.01 ? "visible" : "hidden"));
     const capturedWhite = useTransform(
         scrollYProgress,
-        [0, 0.30, 0.40, 0.65, 0.75, 1],
+        [0, 0.40, 0.50, 0.90, 1, 1],
         [0, 0, 1, 1, 0, 0]
     );
     const capturedWhiteVis = useTransform(capturedWhite, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    // Background slices
-    const bgA = useTransform(scrollYProgress, [0, 0.25, 0.40], [1, 1, 0]);
-    const bgBBase = useTransform(scrollYProgress, [0.25, 0.40, 0.55, 0.70], [0, 1, 1, 0]);
-    const bgBRadial = useTransform(scrollYProgress, [0.30, 0.45, 0.55, 0.70], [0, 1, 1, 0]);
-    const bgC = useTransform(scrollYProgress, [0.55, 0.70, 1], [0, 1, 1]);
+    // Background slices (~35% hold per section)
+    const bgA = useTransform(scrollYProgress, [0, 0.40, 0.50, 1], [1, 1, 0, 0]);
+    const bgBBase = useTransform(scrollYProgress, [0, 0.40, 0.50, 0.90, 1, 1], [0, 0, 1, 1, 0, 0]);
+    const bgBRadial = useTransform(scrollYProgress, [0, 0.45, 0.55, 0.90, 1, 1], [0, 0, 1, 1, 0, 0]);
+    const bgC = useTransform(scrollYProgress, [0, 0.90, 1, 1], [0, 0, 1, 1]);
 
-    // Content slices (overlap with neighbours)
-    const contentA = contentOpacity(scrollYProgress, 0, 0.10, 0.20, 0.40);
-    const contentAY = contentTranslateY(scrollYProgress, 0.40);
+    // Content slices — fade in from +40px below center, lock at center, fade out at -40px above center
+    const contentA = useTransform(scrollYProgress, [0, 0.40, 0.45, 0.50, 1], [0, 1, 1, 0, 0]);
+    const contentAY = useTransform(scrollYProgress, [0, 0.40, 0.45, 0.50, 1], ["40px", "0px", "0px", "-40px", "-40px"]);
 
-    const contentB = contentOpacity(scrollYProgress, 0.30, 0.45, 0.55, 0.70);
-    const contentBY = contentTranslateY(scrollYProgress, 0.70);
+    const contentB = useTransform(scrollYProgress, [0, 0.50, 0.55, 0.95, 1, 1], [0, 0, 1, 1, 0, 0]);
+    const contentBY = useTransform(scrollYProgress, [0, 0.50, 0.55, 0.95, 1, 1], ["40px", "40px", "0px", "0px", "-40px", "-40px"]);
 
-    const contentC = useTransform(scrollYProgress, [0.60, 0.75], [0, 1]);
-    const contentCY = contentTranslateY(scrollYProgress, 1);
+    const contentC = useTransform(scrollYProgress, [0, 0.95, 1, 1], [0, 0, 1, 1]);
+    const contentCY = useTransform(scrollYProgress, [0, 0.95, 1, 1], ["40px", "0px", "0px", "0px"]);
 
     return (
         <div ref={pageRef} className="relative min-h-[300vh]">
@@ -174,7 +157,7 @@ export default function TestPage() {
             </div>
 
             {/* Fixed title */}
-            <div className="fixed top-0 left-0 right-0 z-20 h-screen flex items-center justify-center pointer-events-none">
+            <div className="fixed top-0 left-0 right-0 z-20 pt-20 flex justify-center pointer-events-none">
                 <div className="flex items-center justify-center whitespace-nowrap text-8xl italic font-bold tracking-tight leading-38">
                     <span className="relative inline-grid whitespace-nowrap" style={{ gridTemplateColumns: "1fr", gridTemplateRows: "1fr" }}>
                         <motion.span
@@ -213,29 +196,29 @@ export default function TestPage() {
                 </div>
             </div>
 
-            {/* In-flow content blocks */}
-            <main className="relative z-10 pt-[100vh]">
+            {/* Fixed content blocks — all centered, scroll-driven slide-in/lock/slide-out */}
+            <div className="fixed inset-0 z-10 pointer-events-none flex items-center justify-center">
                 <motion.section
                     style={{ opacity: contentA, y: contentAY }}
-                    className="min-h-[100vh] flex flex-col items-center justify-center py-20 gap-8"
+                    className="flex flex-col items-center justify-center gap-8"
                 >
                     <SectionAContent />
                 </motion.section>
 
                 <motion.section
                     style={{ opacity: contentB, y: contentBY }}
-                    className="min-h-[100vh] flex flex-col items-center justify-center py-20 gap-10"
+                    className="absolute flex flex-col items-center justify-center gap-10"
                 >
                     <SectionBContent />
                 </motion.section>
 
                 <motion.section
                     style={{ opacity: contentC, y: contentCY }}
-                    className="min-h-[100vh] flex flex-col items-center justify-center py-20 gap-8"
+                    className="absolute flex flex-col items-center justify-center gap-8"
                 >
                     <SectionCContent />
                 </motion.section>
-            </main>
+            </div>
         </div>
     );
 }
