@@ -91,48 +91,49 @@ export default function TestPage() {
     const pageRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ target: pageRef, offset: ["start start", "end end"] });
 
-    // Tail phrase slices (strict handoff, ~10% fade per transition, ~35% hold per section)
-    const tailA = useTransform(scrollYProgress, [0, 0.40, 0.50, 1], [1, 1, 0, 0]);
-    const tailAY = useTransform(scrollYProgress, [0, 0.40, 0.50, 1], ["0px", "0px", "-20px", "-20px"]);
+    // Tail phrase slices (synced with content handoffs at 0.33 and 0.67)
+    const tailA = useTransform(scrollYProgress, [0, 0.25, 0.33, 1], [1, 1, 0, 0]);
+    const tailAY = useTransform(scrollYProgress, [0, 0.25, 0.33, 1], ["0px", "0px", "-20px", "-20px"]);
     const tailAVis = useTransform(tailA, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    const tailB = useTransform(scrollYProgress, [0, 0.50, 0.60, 0.90, 1, 1], [0, 0, 1, 1, 0, 0]);
-    const tailBY = useTransform(scrollYProgress, [0, 0.50, 0.60, 0.90, 1, 1], ["20px", "20px", "0px", "0px", "-20px", "-20px"]);
+    const tailB = useTransform(scrollYProgress, [0, 0.33, 0.41, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
+    const tailBY = useTransform(scrollYProgress, [0, 0.33, 0.41, 0.59, 0.67, 1], ["20px", "20px", "0px", "0px", "-20px", "-20px"]);
     const tailBVis = useTransform(tailB, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    const tailC = useTransform(scrollYProgress, [0, 0.90, 1, 1], [0, 0, 1, 1]);
-    const tailCY = useTransform(scrollYProgress, [0, 0.90, 1, 1], ["20px", "0px", "0px", "0px"]);
+    const tailC = useTransform(scrollYProgress, [0, 0.67, 0.75, 1, 1], [0, 0, 1, 1, 1]);
+    const tailCY = useTransform(scrollYProgress, [0, 0.67, 0.75, 1, 1], ["20px", "20px", "0px", "0px", "0px"]);
     const tailCVis = useTransform(tailC, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    // Captured color layers (blue ↔ white, synced with Section B bg window 0.60→0.90)
+    // Captured color layers (blue ↔ white, synced with content handoffs at 0.33 and 0.67)
     const capturedBlue = useTransform(
         scrollYProgress,
-        [0, 0.40, 0.50, 0.90, 1, 1],
+        [0, 0.25, 0.33, 0.59, 0.67, 1],
         [1, 1, 0, 0, 1, 1]
     );
     const capturedBlueVis = useTransform(capturedBlue, (v) => (v > 0.01 ? "visible" : "hidden"));
     const capturedWhite = useTransform(
         scrollYProgress,
-        [0, 0.40, 0.50, 0.90, 1, 1],
+        [0, 0.25, 0.33, 0.59, 0.67, 1],
         [0, 0, 1, 1, 0, 0]
     );
     const capturedWhiteVis = useTransform(capturedWhite, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    // Background slices (~35% hold per section)
-    const bgA = useTransform(scrollYProgress, [0, 0.40, 0.50, 1], [1, 1, 0, 0]);
-    const bgBBase = useTransform(scrollYProgress, [0, 0.40, 0.50, 0.90, 1, 1], [0, 0, 1, 1, 0, 0]);
-    const bgBRadial = useTransform(scrollYProgress, [0, 0.45, 0.55, 0.90, 1, 1], [0, 0, 1, 1, 0, 0]);
-    const bgC = useTransform(scrollYProgress, [0, 0.90, 1, 1], [0, 0, 1, 1]);
+    // Background slices (synced with content handoffs at 0.33 and 0.67)
+    const bgA = useTransform(scrollYProgress, [0, 0.25, 0.33, 1], [1, 1, 0, 0]);
+    const bgBBase = useTransform(scrollYProgress, [0, 0.25, 0.33, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
+    const bgBRadial = useTransform(scrollYProgress, [0, 0.28, 0.36, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
+    const bgC = useTransform(scrollYProgress, [0, 0.59, 0.67, 1], [0, 0, 1, 1]);
 
-    // Content slices — A visible from start, slides up + fades out at handoff. B/C fade in at handoffs.
-    const contentA = useTransform(scrollYProgress, [0, 0.45, 0.50, 1], [1, 1, 0, 0]);
-    const contentAY = useTransform(scrollYProgress, [0, 0.45, 0.50, 1], ["0px", "0px", "-40px", "-40px"]);
+    // Content slices — even spacing: 8% fade-in / 17% hold / 8% fade-out per section, handoffs at 0.33 and 0.67
+    // Section A: visible from start (no fade-in), locks at center, fades out at handoff.
+    const contentA = useTransform(scrollYProgress, [0, 0.25, 0.33, 1], [1, 1, 0, 0]);
+    const contentAY = useTransform(scrollYProgress, [0, 0.25, 0.33, 1], ["0px", "0px", "-40px", "-40px"]);
 
-    const contentB = useTransform(scrollYProgress, [0, 0.50, 0.55, 0.95, 1, 1], [0, 0, 1, 1, 0, 0]);
-    const contentBY = useTransform(scrollYProgress, [0, 0.50, 0.55, 0.95, 1, 1], ["40px", "40px", "0px", "0px", "-40px", "-40px"]);
+    const contentB = useTransform(scrollYProgress, [0, 0.33, 0.41, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
+    const contentBY = useTransform(scrollYProgress, [0, 0.33, 0.41, 0.59, 0.67, 1], ["40px", "40px", "0px", "0px", "-40px", "-40px"]);
 
-    const contentC = useTransform(scrollYProgress, [0, 0.95, 1, 1], [0, 0, 1, 1]);
-    const contentCY = useTransform(scrollYProgress, [0, 0.95, 1, 1], ["40px", "0px", "0px", "0px"]);
+    const contentC = useTransform(scrollYProgress, [0, 0.67, 0.75, 1, 1], [0, 0, 1, 1, 1]);
+    const contentCY = useTransform(scrollYProgress, [0, 0.67, 0.75, 1, 1], ["40px", "40px", "0px", "0px", "0px"]);
 
     return (
         <div ref={pageRef} className="relative min-h-[300vh]">
