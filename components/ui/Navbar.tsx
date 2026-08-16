@@ -7,10 +7,10 @@ import Image from "next/image";
 import { FaInstagram, FaEnvelope } from "react-icons/fa";
 
 const navLinks = [
-    { name: "home", href: "/" },
-    { name: "about", href: "/about" },
-    { name: "portfolio", href: "/portfolio" },
-    { name: "contact", href: "/contact" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
