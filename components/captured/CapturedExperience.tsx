@@ -95,50 +95,48 @@ export default function CapturedExperience() {
     });
 
     // First 25% of scroll (slide-up-cover phase) clamps to 0; remaining 75% maps to 0→1.
-    const progress = useTransform(scrollYProgress, (v) => Math.max(0, (v - 0.25) / 0.75));
+    // const progress = useTransform(scrollYProgress, (v) => Math.max(0, (v - 0.25) / 0.75));
 
-    // Tail phrase slices — equal 21% lock per section
-    const tailA = useTransform(progress, [0, 0.25, 0.33, 1], [1, 1, 0, 0]);
-    const tailAY = useTransform(progress, [0, 0.25, 0.33, 1], ["0px", "0px", "-20px", "-20px"]);
-    const tailAVis = useTransform(tailA, (v) => (v > 0.01 ? "visible" : "hidden"));
+    const progress = scrollYProgress;
 
-    const tailB = useTransform(progress, [0, 0.33, 0.41, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
-    const tailBY = useTransform(progress, [0, 0.33, 0.41, 0.59, 0.67, 1], ["20px", "20px", "0px", "0px", "-20px", "-20px"]);
-    const tailBVis = useTransform(tailB, (v) => (v > 0.01 ? "visible" : "hidden"));
+    // Tail phrase slices — Section A synced with contentA: hold 0→0.10, slide up 0.10→0.25, fade 0.25→0.30.
+    const tailA = useTransform(progress, [0, 0.10, 0.25, 0.30, 1], [1, 1, 1, 0, 0]);
+    const tailAY = useTransform(progress, [0, 0.10, 0.25, 0.30, 1], ["0px", "0px", "-20px", "-20px", "-20px"]);
 
-    const tailC = useTransform(progress, [0, 0.67, 0.75, 1, 1], [0, 0, 1, 1, 1]);
-    const tailCY = useTransform(progress, [0, 0.67, 0.75, 1, 1], ["20px", "20px", "0px", "0px", "0px"]);
-    const tailCVis = useTransform(tailC, (v) => (v > 0.01 ? "visible" : "hidden"));
+    const tailB = useTransform(progress, [0, 0.30, 0.40, 0.65, 1], [0, 0, 1, 0, 0]);
+    const tailBY = useTransform(progress, [0, 0.15, 0.25, 0.50, 1], ["20px", "20px", "0px", "0px", "-20px"]);
 
-    // Captured color layers (blue ↔ white, synced with section locks)
+    const tailC = useTransform(progress, [0, 0.60, 0.80, 1, 1, 1], [0, 0, 1, 1, 1, 1]);
+    const tailCY = useTransform(progress, [0, 0.70, 0.80, 1], ["20px", "20px", "0px", "0px"]);
+
+    // Captured color layers (blue ↔ white, synced with content fade window 0.25 → 0.30)
     const capturedBlue = useTransform(
         progress,
-        [0, 0.25, 0.33, 0.59, 0.67, 1],
-        [1, 1, 0, 0, 1, 1]
+        [0, 0.30, 0.55, 0.70, 1],
+        [1, 1, 0, 1, 1]
     );
-    const capturedBlueVis = useTransform(capturedBlue, (v) => (v > 0.01 ? "visible" : "hidden"));
     const capturedWhite = useTransform(
         progress,
-        [0, 0.25, 0.33, 0.59, 0.67, 1],
+        [0, 0.25, 0.30, 0.55, 0.70, 1],
         [0, 0, 1, 1, 0, 0]
     );
-    const capturedWhiteVis = useTransform(capturedWhite, (v) => (v > 0.01 ? "visible" : "hidden"));
 
-    // Background slices (synced with section locks)
-    const bgA = useTransform(progress, [0, 0.25, 0.33, 1], [1, 1, 0, 0]);
-    const bgBBase = useTransform(progress, [0, 0.25, 0.33, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
-    const bgBRadial = useTransform(progress, [0, 0.28, 0.36, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
-    const bgC = useTransform(progress, [0, 0.59, 0.67, 1], [0, 0, 1, 1]);
+    // Background slices (synced with content fade window 0.25 → 0.30)
+    const bgA = useTransform(progress, [0, 0.30, 0.35, 1], [1, 1, 0, 0]);
+    const bgBBase = useTransform(progress, [0, 0.25, 0.30, 0.55, 0.70, 1], [0, 0, 1, 1, 0, 0]);
+    const bgBRadial = useTransform(progress, [0, 0.28, 0.33, 0.55, 0.70, 1], [0, 0, 1, 1, 0, 0]);
+    const bgC = useTransform(progress, [0, 0.50, 0.70, 1], [0, 0, 1, 1]);
 
-    // Content slices — equal 21% lock per section. A visible from start (no fade-in); C no fade-out.
-    const contentA = useTransform(progress, [0, 0.25, 0.33, 1], [1, 1, 0, 0]);
-    const contentAY = useTransform(progress, [0, 0.25, 0.33, 1], ["0px", "0px", "-40px", "-40px"]);
+    // Content slices — Section A: hold 0→0.15, scroll up 0.15→0.25, fade out 0.25→0.30.
+    // Fade timing matches when content is leaving the frame, not when it's still pinned.
+    const contentA = useTransform(progress, [0, 0.10, 0.25, 0.30, 1], [1, 1, 1, 0, 0]);
+    const contentAY = useTransform(progress, [0, 0.10, 0.25, 0.30, 1], ["0px", "0px", "-20px", "-20px", "-20px"]);
 
-    const contentB = useTransform(progress, [0, 0.33, 0.41, 0.59, 0.67, 1], [0, 0, 1, 1, 0, 0]);
-    const contentBY = useTransform(progress, [0, 0.33, 0.41, 0.59, 0.67, 1], ["40px", "40px", "0px", "0px", "-40px", "-40px"]);
+    const contentB = useTransform(progress, [0, 0.30, 0.40, 0.65, 1], [0, 0, 1, 0, 0]);
+    const contentBY = useTransform(progress, [0, 0.15, 0.25, 0.50, 1], ["20px", "20px", "0px", "0px", "-20px"]);
 
-    const contentC = useTransform(progress, [0, 0.67, 0.75, 1, 1], [0, 0, 1, 1, 1]);
-    const contentCY = useTransform(progress, [0, 0.67, 0.75, 1, 1], ["40px", "40px", "0px", "0px", "0px"]);
+    const contentC = useTransform(progress, [0, 0.60, 0.80, 1, 1, 1], [0, 0, 1, 1, 1, 1]);
+    const contentCY = useTransform(progress, [0, 0.70, 0.80, 1], ["20px", "20px", "0px", "0px"]);
 
     return (
         <section ref={experienceRef} className="relative h-[400vh]">
@@ -168,33 +166,33 @@ export default function CapturedExperience() {
                     <div className="flex items-center justify-center whitespace-nowrap text-8xl italic font-bold tracking-tight leading-38">
                         <span className="relative inline-grid whitespace-nowrap" style={{ gridTemplateColumns: "1fr", gridTemplateRows: "1fr" }}>
                             <motion.span
-                                style={{ opacity: capturedBlue, gridArea: "1 / 1", visibility: capturedBlueVis }}
+                                style={{ opacity: capturedBlue, gridArea: "1 / 1" }}
                                 className="inline-block whitespace-nowrap bg-linear-to-b from-[#678BAA] to-[#678BAA]/50 bg-clip-text text-transparent"
                             >
-                                captured&nbsp;
+                                Captured&nbsp;
                             </motion.span>
                             <motion.span
-                                style={{ opacity: capturedWhite, gridArea: "1 / 1", visibility: capturedWhiteVis }}
+                                style={{ opacity: capturedWhite, gridArea: "1 / 1" }}
                                 className="inline-block whitespace-nowrap bg-linear-to-b from-white to-white/40 bg-clip-text text-transparent"
                             >
-                                captured&nbsp;
+                                Captured&nbsp;
                             </motion.span>
                         </span>
                         <span className="relative inline-grid whitespace-nowrap" style={{ gridTemplateColumns: "1fr", gridTemplateRows: "1fr" }}>
                             <motion.span
-                                style={{ opacity: tailA, y: tailAY, gridArea: "1 / 1", visibility: tailAVis }}
+                                style={{ opacity: tailA, y: tailAY, gridArea: "1 / 1" }}
                                 className="inline-block whitespace-nowrap bg-linear-to-b from-[#678BAA] to-[#678BAA]/50 bg-clip-text text-transparent"
                             >
                                 with love,
                             </motion.span>
                             <motion.span
-                                style={{ opacity: tailB, y: tailBY, gridArea: "1 / 1", visibility: tailBVis }}
+                                style={{ opacity: tailB, y: tailBY, gridArea: "1 / 1" }}
                                 className="inline-block whitespace-nowrap bg-linear-to-b from-white to-white/40 bg-clip-text text-transparent"
                             >
                                 of love,
                             </motion.span>
                             <motion.span
-                                style={{ opacity: tailC, y: tailCY, gridArea: "1 / 1", visibility: tailCVis }}
+                                style={{ opacity: tailC, y: tailCY, gridArea: "1 / 1" }}
                                 className="inline-block whitespace-nowrap bg-linear-to-b from-[#678BAA] to-[#678BAA]/50 bg-clip-text text-transparent"
                             >
                                 by love.
